@@ -10,23 +10,27 @@ import UIKit
 import RealmSwift
 import Alamofire
 
-class CityListViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CityListViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var cityListTableView: UITableView!
     @IBOutlet weak var countryPickerTextField : UITextField!
     let countryPickerView = UIPickerView()
     //    let countries = List<Country>()
     let dataLink = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json"
     let realm = try! Realm()
     lazy var countries: Results<Country> = { self.realm.objects(Country) }()
+    var selectedCountryNumber: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        countryPickerSetup()
+        cityListTableView.tableFooterView = UIView(frame: CGRect.zero)
         fetchData()
+        countryPickerSetup()
     }
     
     func fetchData() {
         if countries.count == 0 {
+            try! realm.beginWrite()
             Alamofire.request(dataLink).responseJSON(completionHandler: { response in
                 guard let json = response.result.value as? [String:[String]] else {
                     print("Error: \(response.result.error)")
@@ -46,6 +50,7 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
                     self.realm.add(newCountry)
                 }
             })
+            countries = realm.objects(Country)
         }
     }
     
@@ -62,7 +67,9 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     func doneButtonTapped() {
         countryPickerTextField.text = countries[countryPickerView.selectedRow(inComponent: 0)].name
+        selectedCountryNumber = countryPickerView.selectedRow(inComponent: 0)
         countryPickerTextField.endEditing(true)
+        cityListTableView.reloadData()
     }
     
     func cancelButtonTapped() {
@@ -80,4 +87,23 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return countries[row].name
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if selectedCountryNumber != nil {
+            return countries[selectedCountryNumber!].cities.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath) as! CityTableViewCell
+        cell.cityNameLabel.text = countries[selectedCountryNumber!].cities[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 }
