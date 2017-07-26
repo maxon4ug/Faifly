@@ -6,7 +6,6 @@
 //  Copyright © 2017 Max Surgai. All rights reserved.
 //
 
-import Foundation
 import RealmSwift
 
 class City: Object {
