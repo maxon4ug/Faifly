@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Alamofire
+import SystemConfiguration
 
 class CityListViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -29,7 +30,7 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func fetchData() {
-        if countries.count == 0 {
+        if countries.count == 0 && isInternetAvailable() == true {
             try! realm.beginWrite()
             Alamofire.request(dataLink).responseJSON(completionHandler: { response in
                 guard let json = response.result.value as? [String:[String]] else {
@@ -51,6 +52,9 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 }
             })
             countries = realm.objects(Country)
+        } else {
+            countryPickerTextField.isEnabled = false
+            countryPickerTextField.text = "No internet connection!"
         }
     }
     
@@ -106,4 +110,24 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func isInternetAvailable() -> Bool
+    {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        return (isReachable && !needsConnection)
+    }
 }
