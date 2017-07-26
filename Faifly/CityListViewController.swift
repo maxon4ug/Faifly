@@ -8,16 +8,45 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
 
 class CityListViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var countryPickerTextField : UITextField!
     let countryPickerView = UIPickerView()
-    let countries = List<Country>()
+    //    let countries = List<Country>()
+    let dataLink = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json"
+    let realm = try! Realm()
+    lazy var countries: Results<Country> = { self.realm.objects(Country) }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         countryPickerSetup()
+        fetchData()
+    }
+    
+    func fetchData() {
+        if countries.count == 0 {
+            Alamofire.request(dataLink).responseJSON(completionHandler: { response in
+                guard let json = response.result.value as? [String:[String]] else {
+                    print("Error: \(response.result.error)")
+                    return
+                }
+                for (country,cities) in json {
+                    let newCountry = Country()
+                    newCountry.name = country
+                    //                let newCities = List<City>()
+                    for city in cities {
+                        let newCity = City()
+                        newCity.name = city
+                        newCountry.cities.append(newCity)
+                        //                    newCities.append(newCity)
+                    }
+                    //                self.countries.append(newCountry)
+                    self.realm.add(newCountry)
+                }
+            })
+        }
     }
     
     func countryPickerSetup() {
@@ -52,4 +81,3 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
         return countries[row].name
     }
 }
-
