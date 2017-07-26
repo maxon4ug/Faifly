@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A13997550846C496CBFCFA055B0EBF9D"
+               BlueprintIdentifier = "DCE1627EF35694534ED7161BE079D343"
                BuildableName = "Pods_Faifly.framework"
                BlueprintName = "Pods-Faifly"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A13997550846C496CBFCFA055B0EBF9D"
+            BlueprintIdentifier = "DCE1627EF35694534ED7161BE079D343"
             BuildableName = "Pods_Faifly.framework"
             BlueprintName = "Pods-Faifly"
             ReferencedContainer = "container:Pods.xcodeproj">

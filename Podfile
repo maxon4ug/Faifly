@@ -8,5 +8,6 @@ target 'Faifly' do
   # Pods for Faifly
 
   pod 'RealmSwift'
-
+  pod 'Alamofire'
+  
 end
