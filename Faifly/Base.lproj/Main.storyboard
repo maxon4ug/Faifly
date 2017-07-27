@@ -74,45 +74,17 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="C3C-hL-W9M"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-x2-b86">
-                                <rect key="frame" x="0.0" y="243" width="375" height="291"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1Po-Nm-RaG">
-                                        <rect key="frame" x="157" y="122" width="61" height="45.5"/>
-                                        <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tJZ-JJ-nk2">
-                                                <rect key="frame" x="20.5" y="0.0" width="20" height="20"/>
-                                            </activityIndicatorView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXw-Wb-I63">
-                                                <rect key="frame" x="0.0" y="25" width="61" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.80392158030000005" green="0.80392158030000005" blue="0.80392158030000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="1Po-Nm-RaG" firstAttribute="centerX" secondItem="ZaA-x2-b86" secondAttribute="centerX" id="ndV-LQ-Abf"/>
-                                    <constraint firstItem="1Po-Nm-RaG" firstAttribute="centerY" secondItem="ZaA-x2-b86" secondAttribute="centerY" id="tiV-9L-JVw"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YU5-qb-u9n" secondAttribute="bottom" id="0UZ-rl-xtB"/>
-                            <constraint firstAttribute="trailing" secondItem="ZaA-x2-b86" secondAttribute="trailing" id="8bO-cF-aRA"/>
                             <constraint firstItem="nvP-uX-kc8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Epb-wr-EqG"/>
-                            <constraint firstItem="ZaA-x2-b86" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GoV-U3-4rJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YU5-qb-u9n" secondAttribute="trailing" constant="-16" id="Gqk-hy-Yia"/>
-                            <constraint firstItem="ZaA-x2-b86" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="J2b-dv-2JK"/>
                             <constraint firstItem="nvP-uX-kc8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="MPD-Qj-czx"/>
                             <constraint firstItem="nvP-uX-kc8" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="MUA-4H-jhD"/>
                             <constraint firstItem="YU5-qb-u9n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="RYD-Vp-UxJ"/>
                             <constraint firstItem="Qjm-6t-q4h" firstAttribute="trailing" secondItem="nvP-uX-kc8" secondAttribute="trailing" constant="-10" id="cC4-eU-AsF"/>
                             <constraint firstItem="Qjm-6t-q4h" firstAttribute="centerY" secondItem="nvP-uX-kc8" secondAttribute="centerY" id="ebx-Iz-9sB"/>
-                            <constraint firstItem="ZaA-x2-b86" firstAttribute="top" secondItem="nvP-uX-kc8" secondAttribute="bottom" constant="15" id="jwa-hJ-SP9"/>
                             <constraint firstItem="YU5-qb-u9n" firstAttribute="top" secondItem="nvP-uX-kc8" secondAttribute="bottom" constant="15" id="vla-S4-mEb"/>
                         </constraints>
                     </view>
@@ -120,7 +92,6 @@
                     <connections>
                         <outlet property="cityListTableView" destination="YU5-qb-u9n" id="ouT-hf-nkP"/>
                         <outlet property="countryPickerTextField" destination="nvP-uX-kc8" id="gY2-kA-dkL"/>
-                        <outlet property="loadingView" destination="ZaA-x2-b86" id="GFR-vc-asC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -146,14 +117,14 @@
                                     <constraint firstAttribute="width" constant="100" id="Ft4-If-baa"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="yf0-zz-SuY">
-                                <rect key="frame" x="141" y="89" width="218" height="26.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="yf0-zz-SuY">
+                                <rect key="frame" x="141" y="89" width="218" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country: Unided States" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="ZfD-E3-Icm">
-                                <rect key="frame" x="141" y="130.5" width="218" height="19.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="ZfD-E3-Icm">
+                                <rect key="frame" x="141" y="104" width="208" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -167,7 +138,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hC8-oB-aNv">
                                 <rect key="frame" x="21" y="193.5" width="333" height="388.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -187,7 +157,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZfD-E3-Icm" firstAttribute="trailing" secondItem="yf0-zz-SuY" secondAttribute="trailing" id="84Z-Gr-Mvy"/>
+                            <constraint firstItem="ZfD-E3-Icm" firstAttribute="trailing" secondItem="yf0-zz-SuY" secondAttribute="trailing" constant="-10" id="84Z-Gr-Mvy"/>
                             <constraint firstItem="7mh-jA-v8C" firstAttribute="leading" secondItem="ndX-6y-LuM" secondAttribute="leadingMargin" id="AiR-gV-Mzt"/>
                             <constraint firstItem="ZfD-E3-Icm" firstAttribute="leading" secondItem="yf0-zz-SuY" secondAttribute="leading" id="BUS-Hk-sAG"/>
                             <constraint firstItem="W3V-fu-sct" firstAttribute="top" secondItem="7mh-jA-v8C" secondAttribute="bottom" id="D4U-Ft-2On"/>

@@ -35,14 +35,14 @@ class CityInfoViewController: UIViewController {
                 print("Error: \(response.result.error?.localizedDescription ?? "Wrong casting")")
                 return
             }
-//            guard json["geonames"]![0]["wikipediaUrl"] != nil else { return }
             if let thumbnailImgURL = json["geonames"]![0]["thumbnailImg"] as? String {
                 Alamofire.request(thumbnailImgURL).responseData { response in
                     guard let data = response.result.value else { return }
-                    if let image = UIImage(data: data) {
-                        self.cityImageView.image = image
-                    }
+                     let image = UIImage(data: data)
+                    self.cityImageView.image = image
                 }
+            } else {
+                self.cityImageView.image = #imageLiteral(resourceName: "nophoto")
             }
             self.cityNameLabel.text = self.cityName
             self.countryNameLabel.text = "Country: \(self.countryName!)"

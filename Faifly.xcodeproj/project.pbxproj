@@ -16,6 +16,7 @@
 		5B0190601F28D50200AE4B3C /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B01905F1F28D50200AE4B3C /* City.swift */; };
 		5B3D550C1F2920BA00A9186C /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D550B1F2920BA00A9186C /* CityTableViewCell.swift */; };
 		5B3D55101F293F6900A9186C /* CityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D550F1F293F6900A9186C /* CityInfoViewController.swift */; };
+		5B46758E1F2986CA008E1E5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B46758D1F2986CA008E1E5C /* Default-568h@2x.png */; };
 		F4CD33201F54E09111F66A81 /* Pods_Faifly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E7FCD7664748E0EA8458E4 /* Pods_Faifly.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		5B01905F1F28D50200AE4B3C /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		5B3D550B1F2920BA00A9186C /* CityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		5B3D550F1F293F6900A9186C /* CityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityInfoViewController.swift; sourceTree = "<group>"; };
+		5B46758D1F2986CA008E1E5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		88E7FCD7664748E0EA8458E4 /* Pods_Faifly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faifly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7E9A934C8E156977489CF8 /* Pods-Faifly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faifly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Faifly/Pods-Faifly.debug.xcconfig"; sourceTree = "<group>"; };
 		E37ED5405F6880328C30D1D9 /* Pods-Faifly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faifly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Faifly/Pods-Faifly.release.xcconfig"; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		5B01903E1F28CB3E00AE4B3C = {
 			isa = PBXGroup;
 			children = (
+				5B46758D1F2986CA008E1E5C /* Default-568h@2x.png */,
 				5B0190491F28CB3E00AE4B3C /* Faifly */,
 				5B0190481F28CB3E00AE4B3C /* Products */,
 				C390626CBF463F6E6882F66F /* Pods */,
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B0190551F28CB3F00AE4B3C /* LaunchScreen.storyboard in Resources */,
+				5B46758E1F2986CA008E1E5C /* Default-568h@2x.png in Resources */,
 				5B0190521F28CB3F00AE4B3C /* Assets.xcassets in Resources */,
 				5B0190501F28CB3E00AE4B3C /* Main.storyboard in Resources */,
 			);

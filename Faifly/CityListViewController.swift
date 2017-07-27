@@ -15,7 +15,6 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     @IBOutlet weak var cityListTableView: UITableView!
     @IBOutlet weak var countryPickerTextField : UITextField!
-    @IBOutlet weak var loadingView: UIView!
     let countryPickerView = UIPickerView()
     let dataURL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json"
     let realm = try! Realm()
@@ -32,7 +31,6 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     func fetchData() {
         guard countries.count == 0 else { return }
         if isInternetAvailable() == true {
-            loadingView.isHidden = false
             Alamofire.request(dataURL).responseJSON(completionHandler: { response in
                 guard let json = response.result.value as? [String:[String]] else {
                     print("Error: \(response.result.error?.localizedDescription ?? "Wrong casting")")
@@ -54,7 +52,6 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 }
             })
             countries = realm.objects(Country.self)
-            loadingView.isHidden = true
         } else {
             countryPickerTextField.isEnabled = false
             countryPickerTextField.text = "No internet connection!"
