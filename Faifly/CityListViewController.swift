@@ -15,11 +15,11 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     @IBOutlet weak var cityListTableView: UITableView!
     @IBOutlet weak var countryPickerTextField : UITextField!
+    @IBOutlet weak var loadingView: UIView!
     let countryPickerView = UIPickerView()
-    //    let countries = List<Country>()
-    let dataLink = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json"
+    let dataURL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json"
     let realm = try! Realm()
-    lazy var countries: Results<Country> = { self.realm.objects(Country) }()
+    lazy var countries: Results<Country> = { self.realm.objects(Country.self) }()
     var selectedCountryNumber: Int?
     
     override func viewDidLoad() {
@@ -30,28 +30,31 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func fetchData() {
-        if countries.count == 0 && isInternetAvailable() == true {
-            try! realm.beginWrite()
-            Alamofire.request(dataLink).responseJSON(completionHandler: { response in
+        guard countries.count == 0 else { return }
+        if isInternetAvailable() == true {
+            loadingView.isHidden = false
+            Alamofire.request(dataURL).responseJSON(completionHandler: { response in
                 guard let json = response.result.value as? [String:[String]] else {
-                    print("Error: \(response.result.error)")
+                    print("Error: \(response.result.error?.localizedDescription ?? "Wrong casting")")
                     return
                 }
                 for (country,cities) in json {
+                    guard country != "" else { continue }
                     let newCountry = Country()
                     newCountry.name = country
-                    //                let newCities = List<City>()
                     for city in cities {
+                        guard city != "" else { continue }
                         let newCity = City()
                         newCity.name = city
                         newCountry.cities.append(newCity)
-                        //                    newCities.append(newCity)
                     }
-                    //                self.countries.append(newCountry)
-                    self.realm.add(newCountry)
+                    try! self.realm.write {
+                        self.realm.add(newCountry)
+                    }
                 }
             })
-            countries = realm.objects(Country)
+            countries = realm.objects(Country.self)
+            loadingView.isHidden = true
         } else {
             countryPickerTextField.isEnabled = false
             countryPickerTextField.text = "No internet connection!"
@@ -106,7 +109,7 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -129,5 +132,16 @@ class CityListViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let isReachable = flags.contains(.reachable)
         let needsConnection = flags.contains(.connectionRequired)
         return (isReachable && !needsConnection)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCityInfoSegue" {
+            let destinationVC = segue.destination as! CityInfoViewController
+            if let cityCell = (sender as? CityTableViewCell) {
+                destinationVC.cityName = cityCell.cityNameLabel.text
+                destinationVC.countryName = countryPickerTextField.text!
+                destinationVC.navigationItem.title = "\(cityCell.cityNameLabel.text!) Info"
+            }
+        }
     }
 }

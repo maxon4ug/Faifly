@@ -9,5 +9,6 @@ target 'Faifly' do
 
   pod 'RealmSwift'
   pod 'Alamofire'
-  
+  pod 'SWXMLHash'
+
 end

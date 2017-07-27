@@ -5,16 +5,19 @@ PODS:
   - Realm/Headers (2.8.0)
   - RealmSwift (2.8.0):
     - Realm (= 2.8.0)
+  - SWXMLHash (4.1.0)
 
 DEPENDENCIES:
   - Alamofire
   - RealmSwift
+  - SWXMLHash
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Realm: 929243ad2b618b3232e70658bedc61110e7563f1
   RealmSwift: 5b7079b891f2833d1849294161ba3e092bbda3f6
+  SWXMLHash: 21340633daddd9aaf5c625ae92a26ca6dcdbfe1b
 
-PODFILE CHECKSUM: a75dd1c2ec48317639f984f463444fbdd6be5009
+PODFILE CHECKSUM: 92c3c95b85fc704c7fa41b4574725a6185af5f3e
 
 COCOAPODS: 1.2.1
